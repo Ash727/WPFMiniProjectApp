@@ -1,0 +1,72 @@
+﻿<Window x:Class="WPFMiniProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFMiniProject"
+        mc:Ignorable="d" FontSize="22"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <!-- * means that it will take up the rest of the space -->
+        <!-- auto mean that it will fit to what ever the size of the component is  -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--First row First Name:-->
+        <!-- Max Width how much width and text can be held-->
+        <TextBlock Margin="0 20 5 0" Grid.Row="0" Grid.Column="1" Text="FirstName:"  HorizontalAlignment="Right"/>
+        <TextBox x:Name="firstNameTextBox" Grid.Row="0" Grid.Column="2" Margin="0 20 0 0" Width="300" MinWidth="200" MaxWidth="300"/>
+       
+        <!--First row Last Name:-->
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="LastName:" Margin=" 0 10 5 0"  HorizontalAlignment="Right"/>
+        <TextBox  x:Name="lastNameTextBox" Grid.Row="1" Grid.Column= "2" MinWidth="200" MaxWidth="300" Margin="0 10 0 0" />
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="IsActive" Margin=" 0 10 5 0"
+                    HorizontalAlignment="Right"/>
+        <CheckBox x:Name="activeCheckBox" Grid.Row="2" Grid.Column= "2" Margin="0 10 0 0"
+                  VerticalAlignment="Center"/>
+        
+        <!--Address and Add button  -->
+            <TextBlock Grid.Row="3" Grid.Column="1" Margin=" 0 20 5 0" Text="Addresses"
+                    HorizontalAlignment="Right"/>
+        <Button x:Name="addButton" Grid.Row="3" Grid.Column= "2" Margin="0 20 0 0" Width="50" 
+                  HorizontalAlignment="Right" Click="addButton_Click">Add</Button>
+        
+        <!-- List Box -->
+        <ListBox x:Name="addressesList" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                 Margin="0 5 0 0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <!--Path Binds to the AddressModel.StreetAddress orioert referenced in a
+                        dedDependencies=>Assemblies DemoLibary.dll-->
+                        <TextBlock Text="{Binding Path=StreetAddress}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=City}" FontSize="12"/>
+                            <TextBlock Text=" ," FontSize="12"/>
+
+                            <TextBlock Text="{Binding Path=Province}" FontSize="12"/>
+                            <TextBlock Text=" " FontSize="12"/>
+
+                            <TextBlock Text="{Binding Path=PostalCode}" FontSize="12"/>
+                            <TextBlock Text=" " FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="savePerson" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+                Margin= "20" Padding="0 10" Click="savePerson_Click">Save</Button>
+    </Grid>
+</Window>
